@@ -1,0 +1,5 @@
+pedro;Sanchez;1.80;987;Arquero;false;10;aguilas
+armando;Breitenstein;1.90;6;Defensor;true;11;aguilas
+matias;Hernandez;1.82;3;Defensor;false;18;aguilas
+hector;Parlmeter;1.73;5;Mediocampista;true;5;aguilas
+beto;Dos Santos;1.85;12;Arquero;false;9;aguilas
