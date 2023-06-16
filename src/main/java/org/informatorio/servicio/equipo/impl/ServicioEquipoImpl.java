@@ -3,6 +3,8 @@ package org.informatorio.servicio.equipo.impl;
 import org.informatorio.dominio.Entrenador;
 import org.informatorio.dominio.Equipo;
 import org.informatorio.dominio.Jugador;
+import org.informatorio.repository.RepositoryEquipo;
+import org.informatorio.repository.impl.RepositoryEquipoImpl;
 import org.informatorio.servicio.entrada.ServicioEntradaArchivo;
 import org.informatorio.servicio.entrada.impl.ServicioConsola;
 import org.informatorio.servicio.entrada.impl.ServicioEntradaArchivoImpl;
@@ -28,6 +30,7 @@ public class ServicioEquipoImpl implements ServicioEquipo {
         String nombreEquipo = "";
         int dia, mes, anio;
         ServicioConsola servicioConsola = new ServicioConsola();
+        RepositoryEquipo repositoryEquipo = new RepositoryEquipoImpl();
 
         do {
 
@@ -50,7 +53,7 @@ public class ServicioEquipoImpl implements ServicioEquipo {
 
             entrada = servicioConsola.solicitarSiNo("¿Cargar otro equipo?");
 
-            ServicioInicioImpl.listaEquipos.add(equipo);
+            repositoryEquipo.guardarEquipo(equipo);
 
         } while (!entrada.equalsIgnoreCase("N"));
     }
@@ -90,32 +93,6 @@ public class ServicioEquipoImpl implements ServicioEquipo {
         return jugadores;
     }
 
-
-    @Override
-    public void borrarEquipo() {
-        System.out.println("*** Borrar un equipo ***");
-        String nombreEquipo = new ServicioConsola().solicitarString("Nombre del equipo a borrar: ");
-
-        List<Equipo> equipoLinkedList = new LinkedList<>();
-        equipoLinkedList.addAll(ServicioInicioImpl.listaEquipos);
-        boolean seEncontro = false;
-        for (Equipo equipo: equipoLinkedList) {
-            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)){
-                seEncontro = true;
-                equipoLinkedList.remove(equipo);
-                break;
-            }
-        }
-        ServicioInicioImpl.listaEquipos.clear();
-        ServicioInicioImpl.listaEquipos.addAll(equipoLinkedList);
-        if (seEncontro) {
-            System.out.println("El equipo " + nombreEquipo + " fue borrado.");
-        } else {
-            System.out.println(nombreEquipo + " no figura en la lista de equipos.");
-        }
-    }
-
-
     @Override
     public Jugador getCapitan(Equipo equipo) {
         Jugador capitan = null;
@@ -128,21 +105,6 @@ public class ServicioEquipoImpl implements ServicioEquipo {
         return capitan;
     }
 
-
-    @Override
-    public Equipo buscarEquipo(String nombre) {
-        Equipo equipoEncontrado = null;
-        for (Equipo equipo: ServicioInicioImpl.listaEquipos) {
-            if (equipo.getNombre().equalsIgnoreCase(nombre)){
-                equipoEncontrado = equipo;
-                break;
-            }
-        }
-        if (equipoEncontrado == null) {
-            System.out.println("No se encontró el equipo " + nombre);
-        }
-        return equipoEncontrado;
-    }
 
     @Override
     public String getStringJugadores(List<Jugador> jugadores){

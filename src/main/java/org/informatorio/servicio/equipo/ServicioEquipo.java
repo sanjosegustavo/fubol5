@@ -11,10 +11,6 @@ public interface ServicioEquipo {
 
     void crearEquipo();
 
-    void borrarEquipo();
-
-    Equipo buscarEquipo (String nombre);
-
     Jugador getCapitan(Equipo equipo);
 
     String getStringJugadores(List<Jugador> jugadores);

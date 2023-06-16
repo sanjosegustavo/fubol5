@@ -1,11 +1,14 @@
 package org.informatorio.servicio;
 
+import org.informatorio.repository.RepositoryEquipo;
+import org.informatorio.repository.impl.RepositoryEquipoImpl;
 import org.informatorio.servicio.entrada.impl.ServicioConsola;
 import org.informatorio.servicio.equipo.ServicioEquipo;
 import org.informatorio.servicio.equipo.impl.ServicioEquipoImpl;
 import org.informatorio.servicio.equipo.impl.ServicioListadoEquipoImpl;
 import org.informatorio.servicio.jugador.ServicioJugador;
 import org.informatorio.servicio.jugador.impl.ServicioJugadorImpl;
+import org.informatorio.dominio.Equipo;
 
 public class GestionMenu {
     private String[] menuOpciones =  {
@@ -85,7 +88,14 @@ public class GestionMenu {
 
     private void borrarEquipo() {
         System.out.println("Eliminar un equipo dado su nombre.");
-        new ServicioEquipoImpl().borrarEquipo();
+        String nombreEquipo = new ServicioConsola().solicitarString("Nombre del equipo a borrar: ");
+        RepositoryEquipo repositoryEquipo = new RepositoryEquipoImpl();
+        Equipo equipo = repositoryEquipo.buscarEquipo(nombreEquipo);
+        if (equipo != null) {
+            repositoryEquipo.borrarEquipo(equipo);
+            System.out.println(nombreEquipo + " fue borrado.");
+        }
+
         System.out.println("-----------------------------");
     }
 

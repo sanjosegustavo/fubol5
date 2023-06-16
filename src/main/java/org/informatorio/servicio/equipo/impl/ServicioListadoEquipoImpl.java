@@ -2,6 +2,8 @@ package org.informatorio.servicio.equipo.impl;
 
 import org.informatorio.dominio.Equipo;
 import org.informatorio.dominio.Jugador;
+import org.informatorio.repository.RepositoryEquipo;
+import org.informatorio.repository.impl.RepositoryEquipoImpl;
 import org.informatorio.servicio.entrada.impl.ServicioConsola;
 import org.informatorio.servicio.equipo.ServicioEquipo;
 import org.informatorio.servicio.equipo.ServicioListadoEquipo;
@@ -26,7 +28,7 @@ public class ServicioListadoEquipoImpl implements ServicioListadoEquipo {
         System.out.println();
         String respuesta = "";
 
-        Equipo equipo = servicioEquipoImpl.buscarEquipo(nombreEquipo);
+        Equipo equipo = new RepositoryEquipoImpl().buscarEquipo(nombreEquipo);
         if (equipo != null) {
             Jugador capitan = servicioEquipoImpl.getCapitan(equipo);
             String nombreCapitan = (capitan != null ? capitan.getNombre() + " " + capitan.getApellido() : "Sin capitán");
@@ -75,7 +77,7 @@ public class ServicioListadoEquipoImpl implements ServicioListadoEquipo {
         System.out.println("*** Exportar lista de jugadores de un equipo ***");
         String nombreEquipo = new ServicioConsola().solicitarString("Ingrese el nombre del equipo: ");
 
-        Equipo equipo = new ServicioEquipoImpl().buscarEquipo(nombreEquipo);
+        Equipo equipo = new RepositoryEquipoImpl().buscarEquipo(nombreEquipo);
         if (equipo != null) {
             try {
                 String rutaArchivoSalida = "src/main/java/org/informatorio/resources/jugadores_equipo_salida.txt";
@@ -134,7 +136,7 @@ public class ServicioListadoEquipoImpl implements ServicioListadoEquipo {
         System.out.println();
         String listado = "";
         String listadoDeJugadores = "";
-        Equipo equipo = new ServicioEquipoImpl().buscarEquipo(nombreEquipo);
+        Equipo equipo = new RepositoryEquipoImpl().buscarEquipo(nombreEquipo);
 
         if (equipo != null) {
             if (esOrdenadoPorNombre) {
