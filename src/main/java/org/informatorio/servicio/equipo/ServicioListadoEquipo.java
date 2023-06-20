@@ -4,21 +4,12 @@ public interface ServicioListadoEquipo {
 
     void listarNombreMasEntrenadorYCapitan();
 
-    void listarNombreMasEntrenadorYJugadores();
-
-    void listarNombreMasEntrenadorYJugadoresOrdenadosPorNombreJugador();
-
-    void listarNombreMasEntrenadorYJugadoresOrdenadosPorNroCamiseta();
-
-    void listarNombreMasEntrenadorYJugadoresOrdenadosPorPosicionYNroCamiseta();
+    void listarDatosEquipo(boolean esOrdenadoPorNombre, boolean esOrdenadoPorNroCamiseta,
+                           boolean esOrdenadoPorPosicionYNroCamiseta);
 
     void exportarListaDeJugadores();
 
-    void exportarTodosLosEquiposOrdenadosPorNombreJugador(boolean esOrdenadoPorNombre, boolean esOrdenadoPorNroCamiseta,
-                                                          boolean esOrdenadoPorPosicionYNroCamiseta);
-
-    void exportarTodosLosEquiposOrdenadosPorNroCamiseta();
-
-    void exportarTodosLosEquiposOrdenadosPorPosicionYNroCamiseta();
+    void exportarEquiposOrdenados(boolean esOrdenadoPorNombre, boolean esOrdenadoPorNroCamiseta,
+                                  boolean esOrdenadoPorPosicionYNroCamiseta);
 
 }

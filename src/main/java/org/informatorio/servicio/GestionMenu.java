@@ -101,19 +101,19 @@ public class GestionMenu {
 
     private void exportarListaEquiposOrdenadosPorPosicionYNroCamisetaArchivoTxt() {
         System.out.println("Exportar lista de equipos ordenados por posición y número de camiseta a un archivo txt.");
-        new ServicioListadoEquipoImpl().exportarTodosLosEquiposOrdenadosPorNombreJugador(false,
+        new ServicioListadoEquipoImpl().exportarEquiposOrdenados(false,
                 false, true);
     }
 
     private void exportarListaEquiposOrdenadosPorNroCamisetaArchivoTxt() {
         System.out.println("Exportar lista de equipos ordenados por número de camiseta a un archivo txt.");
-        new ServicioListadoEquipoImpl().exportarTodosLosEquiposOrdenadosPorNombreJugador(false,
+        new ServicioListadoEquipoImpl().exportarEquiposOrdenados(false,
                 true, false);
     }
 
     private void exportarListaEquiposOrdenadosPorNombreJugadorArchivoTxt() {
         System.out.println("Exportar lista de equipos ordenados por nombre de jugador a un archivo txt.");
-        new ServicioListadoEquipoImpl().exportarTodosLosEquiposOrdenadosPorNombreJugador(true,
+        new ServicioListadoEquipoImpl().exportarEquiposOrdenados(true,
                 false, false);
     }
 
@@ -144,14 +144,15 @@ public class GestionMenu {
     private void buscarEquipo() {
         System.out.println("Buscar un equipo por su nombre, donde se muestra: + \n" +
                 "su nombre, nombre de entrenador y nombre del capitán del equipo.");
-        new ServicioListadoEquipoImpl().listarNombreMasEntrenadorYJugadores();
+        new ServicioListadoEquipoImpl().listarNombreMasEntrenadorYCapitan();
         System.out.println("-----------------------------");
     }
 
     private void mostrarDetallesEquipo() {
         System.out.println("Buscar un equipo por su nombre, donde se muestre: + \n" +
                 "su nombre, nombre del entrenador y la lista de los jugadores del equipo.");
-        new ServicioListadoEquipoImpl().listarNombreMasEntrenadorYJugadores();
+        new ServicioListadoEquipoImpl().listarDatosEquipo(false,
+                false, false);
         System.out.println("-----------------------------");
     }
 
@@ -160,14 +161,16 @@ public class GestionMenu {
         System.out.println("Buscar un equipo por su nombre, donde se muestra: + \n" +
                 "su nombre, nombre del entrenador y la lista de los jugadores del equipo ordenados por + \n " +
                 "posición y número de camiseta.");
-        new ServicioListadoEquipoImpl().listarNombreMasEntrenadorYJugadoresOrdenadosPorPosicionYNroCamiseta();
+        new ServicioListadoEquipoImpl().listarDatosEquipo(false,true,
+                true);
         System.out.println("-----------------------------");
     }
 
     private void verDetallesEquipoOrdenadoPorNroCamiseta() {
         System.out.println("Buscar un equipo por su nombre, donde se muestra: + \n" +
                 "su nombre, nombre del entrenador y la lista de los jugadores del equipo ordenados por número de camiseta.");
-        new ServicioListadoEquipoImpl().listarNombreMasEntrenadorYJugadoresOrdenadosPorNroCamiseta();
+        new ServicioListadoEquipoImpl().listarDatosEquipo(false, true,
+                false);
         System.out.println("-----------------------------");
     }
 
@@ -175,7 +178,8 @@ public class GestionMenu {
 
         System.out.println("Buscar un equipo por su nombre, donde se muestra: + \n" +
                 "su nombre, nombre del entrenador y la lista de los jugadores del equipo ordenados por su nombre.");
-        new ServicioListadoEquipoImpl().listarNombreMasEntrenadorYJugadoresOrdenadosPorNombreJugador();
+        new ServicioListadoEquipoImpl().listarDatosEquipo(true, false,
+                false);
         System.out.println("-----------------------------");
     }
 
